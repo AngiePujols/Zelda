@@ -1,0 +1,460 @@
+﻿#include <allegro.h>
+#include <iostream>
+#include "algif.h"
+ int ticks = 0;
+int ticks1 = 0;
+int x=50;
+int y=300;
+int x1=390;
+int y1=546;
+
+
+
+
+void ticker(void)
+ {
+     ticks1++;
+ }
+
+
+ void ticker1(void)
+ {
+     ticks++;
+ }
+BITMAP *buffer;
+BITMAP *mouse;
+BITMAP *menu1;
+BITMAP *menu2;
+BITMAP *menu3;
+BITMAP *menu4;
+BITMAP *Zelda;
+BITMAP **frames;
+BITMAP **frames1;
+BITMAP *Parado1;
+BITMAP *Parado2;
+BITMAP *Lado_D;
+BITMAP *Lado_I;
+BITMAP *Corre_D;
+BITMAP *Corre_I;
+BITMAP *Espalda1;
+BITMAP *Espalda2;
+BITMAP *Espada;
+MIDI *sonidommm;
+
+
+
+
+
+
+int *duracion;
+int *duracion1;
+int direccion  = 1;
+
+
+void movimientos1()
+{
+if(!key[KEY_RIGHT] && !key[KEY_LEFT] && !key[KEY_UP]  && !key[KEY_DOWN] && direccion==1)
+{
+    draw_sprite(screen,Lado_D,x1,y1);
+}
+if(!key[KEY_RIGHT] && !key[KEY_LEFT] && !key[KEY_UP]  && !key[KEY_DOWN] && direccion==2)
+{
+    draw_sprite(screen,Lado_I,x1,y1);
+}
+if(!key[KEY_RIGHT] && !key[KEY_LEFT] && !key[KEY_UP]  && !key[KEY_DOWN] && direccion==3)
+{
+    draw_sprite(screen,Espalda1,x1,y1);
+}
+if(!key[KEY_RIGHT] && !key[KEY_LEFT] && !key[KEY_UP] && !key[KEY_DOWN] && direccion==4)
+{
+    draw_sprite(screen,Parado2,x1,y1);
+}
+  if (key[KEY_RIGHT])
+    {
+
+
+if(x1<=800)
+{
+
+
+
+
+        direccion = 1;
+        x1+=15;
+        x1+=25;
+        draw_sprite(screen,Corre_D,x1, y1);
+        //blit(buffer,screen,0,0,0,0,800,546);
+        x1+=20;
+       //draw_sprite(buffer,mariocamider1, px+5, py+485);
+
+
+      rest(100);
+    }
+    }
+
+
+    if (key[KEY_LEFT])
+    {
+
+
+if(x1>=100)
+{
+
+
+
+
+
+
+        direccion = 2;
+        x1-=15;
+        x1-=25;
+        draw_sprite(screen,Corre_I,x1,y1);
+        //blit(buffer,screen,0,0,0,0,1300,600);
+        x1-=20;
+        rest(100);
+    }
+    }
+      if (key[KEY_UP])
+    {
+
+
+if(y1>=195)
+{
+
+
+
+
+
+
+        direccion = 3;
+        y1-=15;
+        y1-=25;
+        draw_sprite(screen,Espalda2,x1,y1);
+        //blit(buffer,screen,0,0,0,0,1300,600);
+        y1-=20;
+        rest(100);
+    }
+    }
+
+
+     if (key[KEY_DOWN])
+    {
+
+
+if(y1<=500)
+{
+
+
+
+
+
+
+        direccion = 4;
+        y1+=15;
+        y1+=25;
+        draw_sprite(screen,Parado1,x1,y1);
+        //blit(buffer,screen,0,0,0,0,1300,600);
+        y1+=20;
+        rest(100);
+    }
+    }
+}
+void movimientos()
+{
+if(!key[KEY_RIGHT] && !key[KEY_LEFT] && !key[KEY_UP]  && !key[KEY_DOWN] && direccion==1)
+{
+    draw_sprite(screen,Lado_D,x,y);
+}
+if(!key[KEY_RIGHT] && !key[KEY_LEFT] && !key[KEY_UP]  && !key[KEY_DOWN] && direccion==2)
+{
+    draw_sprite(screen,Lado_I,x,y);
+}
+if(!key[KEY_RIGHT] && !key[KEY_LEFT] && !key[KEY_UP]  && !key[KEY_DOWN] && direccion==3)
+{
+    draw_sprite(screen,Espalda1,x,y);
+}
+if(!key[KEY_RIGHT] && !key[KEY_LEFT] && !key[KEY_UP] && !key[KEY_DOWN] && direccion==4)
+{
+    draw_sprite(screen,Parado2,x,y);
+}
+  if (key[KEY_RIGHT])
+    {
+
+
+if(x<=800)
+{
+
+
+BITMAP *Espalda2;
+        direccion = 1;
+        x+=15;
+        x+=25;
+        draw_sprite(screen,Corre_D,x, y);
+        //blit(buffer,screen,0,0,0,0,800,546);
+        x+=20;
+       //draw_sprite(buffer,mariocamider1, px+5, py+485);
+
+
+      rest(100);
+    }
+    }
+
+
+    if (key[KEY_LEFT])
+    {
+
+
+if(x>=100)
+{
+
+
+
+
+
+
+        direccion = 2;
+        x-=15;
+        x-=25;
+        draw_sprite(screen,Corre_I,x,y);
+        //blit(buffer,screen,0,0,0,0,1300,600);
+        x-=20;
+        rest(100);
+    }
+    }
+      if (key[KEY_UP])
+    {
+
+
+if(y>=195)
+{
+
+
+
+
+
+
+        direccion = 3;
+        y-=15;
+        y-=25;
+        draw_sprite(screen,Espalda2,x,y);
+        //blit(buffer,screen,0,0,0,0,1300,600);
+        y-=20;
+        rest(100);
+    }
+    }
+
+
+     if (key[KEY_DOWN])
+    {
+
+
+if(y<=400)
+{
+
+
+
+
+
+
+        direccion = 4;
+        y+=15;
+        y+=25;
+        draw_sprite(screen,Parado1,x,y);
+        //blit(buffer,screen,0,0,0,0,1300,600);
+        y+=20;
+        rest(100);
+    }
+    }
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+void Link(){
+
+
+draw_sprite(screen,Lado_D,x,y);
+
+
+            }
+
+
+using namespace std;
+
+
+int main ()
+{
+     allegro_init();
+    install_keyboard();
+    install_mouse();
+    set_color_depth(32);
+    set_gfx_mode(GFX_AUTODETECT_WINDOWED,800,544,0,0);
+    if (install_sound(DIGI_AUTODETECT, MIDI_AUTODETECT, NULL) != 0) { allegro_message("Error: inicializando sistema de sonido\n%s\n", allegro_error); return 1; }
+set_volume(170, 170);
+    buffer = create_bitmap(800,544);
+    mouse= load_bitmap("click .bmp",NULL);
+    menu1= load_bitmap("Menu1.bmp",NULL);
+    menu2= load_bitmap("menu2.bmp",NULL);
+    menu3= load_bitmap("menu3.bmp",NULL);
+    menu4= load_bitmap("Game1.bmp",NULL);
+    Parado1=load_bitmap("Player1.bmp",NULL);
+    Parado2=load_bitmap("Player2.bmp",NULL);
+    Lado_D=load_bitmap("Player3.bmp",NULL);
+    Lado_I=load_bitmap("Player3-1.bmp",NULL);
+    Corre_D=load_bitmap("Player4.bmp",NULL);
+    Corre_I=load_bitmap("Player4-1.bmp",NULL);
+    Espalda1=load_bitmap("Player5.bmp",NULL);
+    Espalda2=load_bitmap("Player6.bmp",NULL);
+    Espada=load_bitmap("Sword.bmp",NULL);
+   SAMPLE *sonido1 = load_wav("1 - Title Bgm.wav");
+   SAMPLE *sonido2 = load_wav("02 - overworld.wav");
+   SAMPLE *sonido3 = load_wav("OOT_Navi_Listen1.wav");
+
+
+    char const *Zelda="Title.gif";
+    int n= algif_load_animation(Zelda, &frames, &duracion);
+    char const *Sabio="Sabio.gif";
+    int n1= algif_load_animation(Sabio, &frames1, &duracion1);
+    install_int_ex(ticker, BPS_TO_TIMER(100));
+    install_int_ex(ticker1, BPS_TO_TIMER(100));
+bool salida=false;
+bool Salida=false;
+bool Salida2=false;
+bool Escape=false;
+bool Esc=false;
+
+
+
+
+  play_sample(sonido2,200,200,1000,0);
+
+
+    while(!salida)
+    {
+        //clear_to_color(buffer,0xaaaaaa);
+
+
+
+
+        for (int i = 0; i < n; i++)
+        {
+
+
+            int e;
+
+
+            draw_sprite(screen,frames[i],5,0);
+            e= ticks + duracion[i];
+            draw_sprite(screen,menu1,180,318);
+            if(mouse_x>530 && mouse_x<647 && mouse_y>305 && mouse_y<392)
+         {
+           draw_sprite(screen,menu2,180,318);
+
+
+           if(mouse_b &1)
+           {
+
+
+            return 0;
+           }
+         }
+
+
+         if(mouse_x>173 && mouse_x<320 && mouse_y>320 && mouse_y<370)
+         {
+          play_sample(sonido3,200,200,1000,0);
+          draw_sprite(screen,menu3,180,318);
+
+
+           if(mouse_b &1)movimientos();
+         {
+           draw_sprite(screen,menu3,180,318);
+           salida=true;
+         }
+
+
+         }
+
+
+
+
+            draw_sprite(screen,mouse,mouse_x,mouse_y);
+            while(ticks<e) rest(1);
+        }
+
+
+
+
+
+
+    }
+
+
+ while(!key[KEY_ESC])
+ {
+
+
+if(!Escape)
+    {
+
+
+    draw_sprite(screen,menu4,0,0);
+     movimientos();
+     draw_sprite(screen,mouse,mouse_x,mouse_y);
+     rest(100);
+ }
+
+
+   if(x>520 && x<580 && y>50 && y<190)
+{
+Escape=true;
+for (int u = 0; u < n1; u++)
+        {
+
+
+            int e1;
+
+
+
+
+            draw_sprite(screen,frames1[u],0,0);
+            e1= ticks1 + duracion1[u];
+           if(!Esc)
+         {
+           draw_sprite(screen,Espada,380,300);
+         }
+            movimientos1();
+           if(x1>340 && x1<400 && y1>230 && y1<300)
+           {
+               Esc=true;
+           }
+
+
+          while(ticks1<e1)rest(100);
+
+
+
+
+        }
+
+
+}
+
+
+}
+
+
+}
+
+
+END_OF_MAIN();
